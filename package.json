@@ -12,7 +12,7 @@
 	    "api",
 	    "sdk"
 	],
-	"main" : "usps",
+	"main" : "./lib/usps",
   	"repository": {
     	"type": "git",
     	"url": "https://github.com/richmulhern/node-usps_apis.git"
@@ -23,5 +23,7 @@
 	},
 	"devDependencies": {
 		"coffee-script": ">=1.3.3",
-	},	
+		"should": "*",
+		"mocha": "*"
+	}
 }
