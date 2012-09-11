@@ -4,7 +4,6 @@
 var http = require('http')
   , xml2js = require('xml2js')
   , events = require('events')
-  , config = require('./lib/config/config')
   , util = require('util');
 
 function UspsClient() {
@@ -63,7 +62,9 @@ UspsClient.prototype.connect = function( url, callback ) {
 
 }
 
-var options = 'http://testing.shippingapis.com/ShippingAPITest.dll?API=TrackV2&XML=<TrackRequest USERID="' + config.usps.userId + '"><TrackID ID="EJ958083578US"></TrackID></TrackRequest>';
+var userId = '418RICHA2151';
+
+var options = 'http://testing.shippingapis.com/ShippingAPITest.dll?API=TrackV2&XML=<TrackRequest USERID="' + userId + '"><TrackID ID="EJ958083578US"></TrackID></TrackRequest>';
 
 usps = new UspsClient();
 
