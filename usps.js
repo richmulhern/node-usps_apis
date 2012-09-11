@@ -1,4 +1,5 @@
 var UspsClient = require('./lib/UspsClient');
+var ShippingApi = require('./lib/ShippingApi');
 
 var userId = '418RICHA2151';
 
@@ -8,9 +9,7 @@ var options = 'http://testing.shippingapis.com/ShippingAPITest.dll?API=TrackV2&X
 // good url
 var options = 'http://testing.shippingapis.com/ShippingAPITest.dll?API=TrackV2&XML=<TrackRequest USERID="' + userId + '"><TrackID ID="EJ958083578US"></TrackID></TrackRequest>';
 
-console.log( options );
-
-usps = new UspsClient();
+usps = new UspsClient( userId );
 
 usps.connect( options, function(res) {
 
@@ -23,3 +22,17 @@ usps.connect( options, function(res) {
     });
 
 });
+
+console.log( usps.getUsername() );
+
+
+
+shipping = new ShippingApi( userId );
+
+shipping.get('TrackV2', {"userId": userId, trackId: "EJ958083578US"}, function( res ) {
+
+	res.on( 'data', function(data) {
+		console.log(data);
+	});
+
+})
