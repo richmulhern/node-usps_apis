@@ -25,10 +25,19 @@ UspsClient.prototype.connect = function( url, callback ) {
 
       var parser = new xml2js.Parser();
       parser.parseString(chunk, function(err, result) {
-        uspsObj.emit('data', result);
+      	if( result.Error ) {
+      		uspsObj.emit('error', result.Error );
+      	} else {
+	        uspsObj.emit('data', result.TrackResponse.TrackInfo[0] );
+      	}
       });
 
     });
+    
+    res.on('error', function(e) {
+    	console.log(e);
+    });
+    
   });
 
 
@@ -64,14 +73,24 @@ UspsClient.prototype.connect = function( url, callback ) {
 
 var userId = '418RICHA2151';
 
+// bad API url
+var options = 'http://testing.shippingapis.com/ShippingAPITest.dll?API=TrackV2&XML=<TrackRequest USERID="23423RCIASD2324"><TrackID ID="EJ958083578US"></TrackID></TrackRequest>';
+
+// good url
 var options = 'http://testing.shippingapis.com/ShippingAPITest.dll?API=TrackV2&XML=<TrackRequest USERID="' + userId + '"><TrackID ID="EJ958083578US"></TrackID></TrackRequest>';
+
+console.log( options );
 
 usps = new UspsClient();
 
 usps.connect( options, function(res) {
-    console.log('CONNECTING...');
 
-    res.on('data', function(data) {
+    res.on( 'data', function(data) {
       console.log(data);
-    })
+    });
+    
+    res.on( 'error', function(e) {
+    	console.log( e );
+    });
+
 });
