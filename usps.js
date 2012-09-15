@@ -9,7 +9,7 @@ var options = 'http://testing.shippingapis.com/ShippingAPITest.dll?API=TrackV2&X
 // good url
 var options = 'http://testing.shippingapis.com/ShippingAPITest.dll?API=TrackV2&XML=<TrackRequest USERID="' + userId + '"><TrackID ID="EJ958083578US"></TrackID></TrackRequest>';
 
-usps = new UspsClient( userId );
+/*usps = new UspsClient( userId );
 
 usps.connect( options, function(res) {
 
@@ -21,18 +21,14 @@ usps.connect( options, function(res) {
     	console.log( e );
     });
 
-});
+});*/
 
-console.log( usps.getUsername() );
-
-
+//console.log( usps.getUsername() );
 
 shipping = new ShippingApi( userId );
 
-shipping.get('TrackV2', {"userId": userId, trackId: "EJ958083578US"}, function( res ) {
+shipping.track("EJ958083578US");
 
-	res.on( 'data', function(data) {
-		console.log(data);
-	});
-
-})
+shipping.on('data', function(data) {
+	console.log(data);
+});
