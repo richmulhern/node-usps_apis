@@ -1,7 +1,8 @@
 var assert = require('assert')
-  , ShippingApi = require('../lib/ShippingApi.js');
+  , ShippingApi = require('../lib/ShippingApi.js')
+  , Config = require(.config);
 
-var userId = '' //Insert your user id
+var userId = Config.userId;
 
 if( userId == '' ) {
 	throw new Error('Must define userId in track_test.js to run test');

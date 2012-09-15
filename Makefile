@@ -1,4 +1,4 @@
 test:
-	@node test/test.js
+	@node test/*.js
 
 .PHONY: test
