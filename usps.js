@@ -1,7 +1,8 @@
 var UspsClient = require('./lib/UspsClient');
 var ShippingApi = require('./lib/ShippingApi');
+var Config = require('./lib/Config');
 
-var userId = '418RICHA2151';
+var userId = Config.userId;
 
 // bad API url
 var options = 'http://testing.shippingapis.com/ShippingAPITest.dll?API=TrackV2&XML=<TrackRequest USERID="23423RCIASD2324"><TrackID ID="EJ958083578US"></TrackID></TrackRequest>';
