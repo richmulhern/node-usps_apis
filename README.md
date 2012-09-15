@@ -52,7 +52,7 @@ Use the Tracking API to track packages.
     var numTrackIDsEnded = 0;
 
     shipping.on('data', function(data) {
-        collectedData.push(data);
+        console.log(data);
     });
 ```
 
