@@ -1,1 +1,1 @@
-module.exports = require('./lib/usps');
+exports.ShippingApi = require('./lib/ShippingApi');
