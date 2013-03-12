@@ -1,4 +1,4 @@
-
+{
   "name": "usps",
   "description": "SDK for accessing the USPS Shipping APIs",
   "version": "0.1.0",
